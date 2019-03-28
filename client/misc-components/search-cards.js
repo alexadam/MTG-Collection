@@ -5,6 +5,51 @@ import './search-cards.scss'
 import {cardData} from '../../resources/mtg-cards.js'
 import MTGManaIcons from './mana-icons'
 
+
+class SearchFilter extends React.Component {
+
+    state = {
+        isFilterOptionsVisible: false,
+        filterString: ''
+    }
+
+    toggleFilterOptions = () => {
+        this.setState({isFilterOptionsVisible: !this.state.isFilterOptionsVisible})
+    }
+
+    onFilterInput = (e) => {
+        let newVal = e.target.value
+        this.setState({filterString: newVal}, ()=>{this.props.onSearchInput(newVal)})
+    }
+
+    render = () => {
+
+        let filterOptions = (
+            <div className="mtg-search-card-options">
+                <input type="radio"/> label 1
+                <input type="radio"/> label 1
+                <input type="radio"/> label 1
+            </div>
+        )
+
+        if (!this.state.isFilterOptionsVisible) {
+            filterOptions = null
+        }
+
+        return (
+            <div className="mtg-search-card-filter-container">
+                <div className="mtg-search-card-input">
+                    <div className="mtg-search-filter-row">
+                        <input type="text" value={this.state.filterString} onChange={this.onFilterInput}/>
+                        <button onClick={this.toggleFilterOptions}>options</button>
+                    </div>
+                </div>
+                {filterOptions}
+            </div>
+        )
+    }
+}
+
 class AddCardOptions extends React.Component {
 
     render = () => {
@@ -61,7 +106,7 @@ export default class SearchCards extends React.Component {
     }
 
     onSearchInput = (e) => {
-        let newVal = e.target.value
+        let newVal = e
         this.setState({
             searchValue: newVal
         }, () => {
@@ -123,10 +168,7 @@ export default class SearchCards extends React.Component {
 
         return (
             <div className="mtg-search-card-container">
-                <div className="mtg-search-card-input">
-                    <input type="text" value={this.state.searchValue} onChange={this.onSearchInput}/>
-                    <button>options</button>
-                </div>
+                <SearchFilter onSearchInput={this.onSearchInput}/>
                 <div className="mtg-search-card-results">
                     {cardsFound}
                 </div>

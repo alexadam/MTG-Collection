@@ -1,20 +1,18 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { createStore } from 'redux';
+import { Provider } from 'react-redux'
+
 import './style.scss';
+
+// import MainMobile from './main1'
 
 
 import Modal from 'react-responsive-modal';
 import SearchCards from './misc-components/search-cards'
 
-class SearchB extends React.Component {
+import MainReducer from './reducer.js';
 
-
-    render = () => {
-        return (
-            <button onClick={this.search}>Search</button>
-        )
-    }
-}
 
 class Main extends React.Component {
     state = {
@@ -42,12 +40,78 @@ class Main extends React.Component {
     }
 }
 
+const store = createStore(MainReducer);
+
+
+
+/*
+
+<div className="main-container">
+    <div className="title">M:tG Collection Helper</div>
+    <Main />
+    <div className="tmp-container">
+        <div className="tmp-container-row">
+            <div className="tmp-menu">
+                <button className="tmp-menu-button">Cards</button>
+                <button className="tmp-menu-button">Decks</button>
+                <button className="tmp-menu-button">Wishlist</button>
+                <button className="tmp-menu-button">Stats</button>
+                <button className="tmp-menu-button">Search...</button>
+            </div>
+            <div className="tmp-cards-holder">
+                <input type="text" placeholder="Search"/>
+                <div className="card">
+                    tec
+                </div>
+                <div className="card">
+                    tec 2
+                </div>
+                <div className="card">
+                    tec 3
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+*/
+
 
 const App = (props) => (
-    <div>
-        <SearchB />
-        <Main />
-    </div>
+
+    <Provider store={store}>
+        <div className="main-container">
+            <div className="title">M:tG Collection Helper</div>
+            <Main />
+            <div className="tmp-container">
+                <div className="tmp-container-row">
+                    <div className="tmp-menu">
+                        <button className="tmp-menu-button">Cards</button>
+                        <button className="tmp-menu-button">Decks</button>
+                        <button className="tmp-menu-button">Wishlist</button>
+                        <button className="tmp-menu-button">Stats</button>
+                        <button className="tmp-menu-button">Search...</button>
+                    </div>
+                    <div className="tmp-cards-holder">
+                        <input type="text" placeholder="Search"/>
+                        <div className="card">
+                            tec
+                        </div>
+                        <div className="card">
+                            tec 2
+                        </div>
+                        <div className="card">
+                            tec 3
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </Provider>
+
+
 );
 
 ReactDOM.render((
