@@ -31,7 +31,7 @@ export default class MTGManaIcons extends React.Component {
     W_Color = '#fffbd5'
 
 
-    createFullMana = (symbol) => {
+    createFullMana = (symbol, inline = false) => {
         let bgColor = null
         let symbolSVG = null
         let width = 600
@@ -59,19 +59,30 @@ export default class MTGManaIcons extends React.Component {
                         </g>
         }
 
+        let className = 'mtg-mana-icon-holder'
+
+        if (inline) {
+            className = 'mtg-mana-inline'
+        }
+
         return (
-            <svg xmlns="http://www.w3.org/2000/svg" className="mtg-mana-icon-holder" viewBox="0 0 600 600"><circle cx="300" cy="300" r="300" fill={bgColor}/>
+            <svg xmlns="http://www.w3.org/2000/svg" className={className} viewBox="0 0 600 600"><circle cx="300" cy="300" r="300" fill={bgColor}/>
                 {symbolSVG}
             </svg>
         )
     }
 
-    createHalfMana = (symbolLeft, symbolRight) => {
+    createHalfMana = (symbolLeft, symbolRight, inline = false) => {
         let leftMana = this.createHalfManaLeft(symbolLeft)
         let rightMana = this.createHalfManaRight(symbolRight)
+        let className = 'mtg-mana-icon-holder'
+
+        if (inline) {
+            className = 'mtg-mana-inline'
+        }
 
         return (
-            <svg xmlns="http://www.w3.org/2000/svg" className="mtg-mana-icon-holder" viewBox="0 0 600 600">
+            <svg xmlns="http://www.w3.org/2000/svg" className={className} viewBox="0 0 600 600">
                 {leftMana}
                 {rightMana}
             </svg>
@@ -168,9 +179,7 @@ export default class MTGManaIcons extends React.Component {
             if (mana.indexOf('/') > 0) {
                 manaArray = mana.split('/')
             }
-
-            console.log('lastindex', manaRegexp.lastIndex);
-
+            
             let tmpIcon = null
             if (manaArray.length > 1) {
                 tmpIcon = this.createHalfMana(manaArray[0], manaArray[1])
@@ -199,7 +208,6 @@ export default class MTGManaIcons extends React.Component {
                 continue
             }
 
-            console.log('lastindex', manaRegexp.lastIndex);
             let stringPart = targetText.substring(lastIndex, manaRegexp.lastIndex - match[0].length)
             lastIndex = manaRegexp.lastIndex // + match[0].length
             parts.push(<span>{stringPart}</span>)
@@ -211,9 +219,9 @@ export default class MTGManaIcons extends React.Component {
 
             let tmpIcon = null
             if (manaArray.length > 1) {
-                tmpIcon = this.createHalfMana(manaArray[0], manaArray[1])
+                tmpIcon = this.createHalfMana(manaArray[0], manaArray[1], true)
             } else {
-                tmpIcon = this.createFullMana(mana)
+                tmpIcon = this.createFullMana(mana, true)
             }
             parts.push(tmpIcon)
 

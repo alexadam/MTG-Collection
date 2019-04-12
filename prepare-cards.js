@@ -21,6 +21,8 @@ for (var key in jsonData) {
         'text': tmpObj['text'],
         'type': tmpObj['type'],
         'types': tmpObj['types'],
+        'power': tmpObj['power'],
+        'toughness': tmpObj['toughness'],
     }
     newData.push(tmpNewData)
 }

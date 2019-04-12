@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css?family=Antic+Didone|Belgrano|Cormorant+Upright|David+Libre|Della+Respira|Fjord+One|Fondamento|IM+Fell+DW+Pica+SC|IM+Fell+English+SC|IM+Fell+Great+Primer|Inknut+Antiqua|Katibeh|Linden+Hill|Metamorphous|Milonga|Montaga|Trykker');
 
 
 .mtg-search-card-container {
@@ -42,17 +43,97 @@
     margin-bottom: 20px;
     width: 100%;
     width: 300px;
-    height: 400px; min-height: 400px;
+    // height: 400px; min-height: 400px;
     // border-bottom: solid 1px black;
-    border: solid 10px black;
+    // border: solid 10px black;
 
     display: flex; flex-flow: column;
     padding: 10px;
     border-radius: 25px;
     box-shadow: 0 14px 18px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     margin-top: 20px;
+    box-sizing: border-box;
 }
 
 .mtg-focus-card-view:hover {
     box-shadow: 0 8px 18px rgba(0, 0, 0, 0.10), 0 8px 8px rgba(0, 0, 0, 0.18);
+}
+
+.mtg-card {
+    font-family: 'Fondamento', cursive;
+    font-family: 'IM Fell English SC', serif;
+    font-family: 'Belgrano', serif;
+    font-family: 'Fjord One', serif;
+    font-family: 'Katibeh', cursive;
+    font-family: 'David Libre', serif;
+    font-family: 'Metamorphous', cursive;
+    font-family: 'Milonga', cursive;
+    font-family: 'Antic Didone', serif;
+    font-family: 'Cormorant Upright', serif;
+    font-family: 'IM Fell Great Primer', serif;
+    font-family: 'Inknut Antiqua', serif;
+    font-family: 'IM Fell DW Pica SC', serif;
+    font-family: 'Linden Hill', serif;
+    font-family: 'Della Respira', serif;
+    font-family: 'Trykker', serif;
+    font-family: 'Montaga', serif;
+}
+
+.mtg-card-row {
+    padding: 5px 10px;
+    margin-bottom: 10px;
+    display: flex;flex-flow: row;
+}
+
+.mtg-card-header {
+    // width: 100%;
+    display: flex; flex-flow: row; justify-content: space-between;
+    line-height: 20px;
+    vertical-align: middle;
+}
+
+.mtg-card-name {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.mtg-card-mana {
+    text-align: right;
+}
+
+.mtg-card-type {
+    background-color: lightgrey;
+}
+
+.mtg-card-rules {
+
+}
+
+.mtg-add-card-text-rules {
+    display: flex; flex-flow: column;
+}
+
+.mtg-add-card-text-rule-row {
+    margin-bottom: 10px;
+}
+
+.mtg-card-expansion {
+
+}
+
+.mtg-card-power {
+    display: flex; flex-flow: row;
+    width: 100%;
+}
+
+.mtg-card-power-display {
+    width: auto;
+    padding: 3px;
+    display: flex; flex-flow: row;
+    border: 2px solid black;
+    font-weight: bold;
+}
+
+.mtg-card-toughness {
+
 }

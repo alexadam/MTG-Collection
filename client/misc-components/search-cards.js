@@ -61,6 +61,32 @@ class AddCardOptions extends React.Component {
     }
 }
 
+class CardRulesText extends React.Component {
+
+    render = () => {
+        if (!this.props.rulesText) {
+            return null
+        }
+
+        let textParts = this.props.rulesText.split(/\n/g)
+        let elemParts = []
+
+        for (let tPart of textParts) {
+            elemParts.push(
+                (<div className="mtg-add-card-text-rule-row">
+                    <MTGManaIcons inlineText={tPart} />
+                </div>)
+            )
+        }
+
+        return (
+            <div className="mtg-add-card-text-rules">
+                {elemParts}
+            </div>
+        )
+    }
+}
+
 class FocusCardView extends React.Component {
 
     cardSelected = () => {
@@ -79,16 +105,36 @@ class FocusCardView extends React.Component {
             bgClass = 'selected-card'
         }
 
-        return (
-            <div className={"mtg-focus-card-view " + bgClass} onClick={this.cardSelected}>
-                <div>
-                    {this.props.card.name}
+        let cardPower = null
+        if (this.props.card.power || this.props.card.toughness) {
+            cardPower = (
+                <div className="mtg-card-power mtg-card-row">
+                    <div className="mtg-card-power-display">
+                        <MTGManaIcons inlineText={this.props.card.power} /> / <MTGManaIcons inlineText={this.props.card.toughness} />
+                    </div>
                 </div>
-                <MTGManaIcons manaString={this.props.card.manaCost} />
-                <div>
+            )
+        }
+
+        return (
+            <div className={"mtg-card mtg-focus-card-view " + bgClass} onClick={this.cardSelected}>
+                <div className="mtg-card-header mtg-card-row">
+                    <div className="mtg-card-name">
+                        {this.props.card.name}
+                    </div>
+                    <div className="mtg-card-mana">
+                        <MTGManaIcons manaString={this.props.card.manaCost} width="15" />
+                    </div>
+                </div>
+
+                <div className="mtg-card-type mtg-card-row">
                     {this.props.card.type}
                 </div>
-                <MTGManaIcons inlineText={this.props.card.text} />
+                <div className="mtg-card-rules mtg-card-row">
+                    <CardRulesText rulesText={this.props.card.text} />
+                </div>
+                {cardPower}
+
             </div>
         )
     }
