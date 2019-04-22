@@ -1,16 +1,16 @@
 const actions = {
-    ADD_CARD: 'ADD_CARD',
-    REMOVE_CARDS: 'REMOVE_CARD'
+    ADD_CARD_TO_COLLECTION: 'ADD_CARD_TO_COLLECTION',
+    REMOVE_CARD_FROM_COLLECTION: 'REMOVE_CARD_FROM_COLLECTION'
 };
 
-const addCard = (cardData) => ({
-    type: actions.ADD_CARD,
+const addCardToCollection = (cardData) => ({
+    type: actions.ADD_CARD_TO_COLLECTION,
     cardData: cardData
 });
 
-const removeCard = (cardData) => ({
-    type: actions.REMOVE_CARD,
+const removeCardFromCollection = (cardData) => ({
+    type: actions.REMOVE_CARD_FROM_COLLECTION,
     cardData: cardData
 });
 
-export {actions, addCard, removeCard};
+export {actions, addCardToCollection, removeCardFromCollection};

@@ -25,6 +25,14 @@ class Main extends React.Component {
         })
     }
 
+    onCardSelected = (newCard) => {
+        console.log("NEW card");
+    }
+
+    onAddCard = (cardData) => {
+
+    }
+
     render = () => {
         return (
             <div className="mtg-main">
@@ -33,7 +41,7 @@ class Main extends React.Component {
                             showCloseIcon={false}
                             classNames={{modal: 'mtg-search-popup-container'}}
                             center>
-                    <SearchCards />
+                    <SearchCards onCardSelected={this.onCardSelected} onAddCard={this.onAddCard} />
                 </Modal>
             </div>
         )
@@ -79,6 +87,8 @@ const store = createStore(MainReducer);
 */
 
 
+import CardsListView from './cards/cards-list'
+
 const App = (props) => (
 
     <Provider store={store}>
@@ -96,15 +106,7 @@ const App = (props) => (
                     </div>
                     <div className="tmp-cards-holder">
                         <input type="text" placeholder="Search"/>
-                        <div className="card">
-                            tec
-                        </div>
-                        <div className="card">
-                            tec 2
-                        </div>
-                        <div className="card">
-                            tec 3
-                        </div>
+                        <CardsListView />
                     </div>
                 </div>
             </div>

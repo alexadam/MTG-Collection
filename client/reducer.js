@@ -46,6 +46,18 @@ const defaultData = {
 }
 
 const MainReducer = (state = defaultData, action) => {
+
+    if (action.type === actions.ADD_CARD_TO_COLLECTION) {
+        let tmpData = JSON.parse(JSON.stringify(state))
+        let tmpCard = JSON.parse(JSON.stringify(cardData))
+        tmpCard.type = action.cardData
+        tmpData.allCards.push(tmpCard)
+        return tmpData
+    }
+    if (action.type === actions.REMOVE_CARD_FROM_COLLECTION) {
+
+    }
+
     return state
 }
 
