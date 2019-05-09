@@ -10,6 +10,7 @@ import './style.scss';
 
 import Modal from 'react-responsive-modal';
 import SearchCards from './misc-components/search-cards'
+import AllCardsView from './all-cards/all-cards-view'
 
 import MainReducer from './reducer.js';
 
@@ -94,7 +95,6 @@ const App = (props) => (
     <Provider store={store}>
         <div className="main-container">
             <div className="title">M:tG Collection Helper</div>
-            <Main />
             <div className="tmp-container">
                 <div className="tmp-container-row">
                     <div className="tmp-menu">
@@ -102,11 +102,16 @@ const App = (props) => (
                         <button className="tmp-menu-button">Decks</button>
                         <button className="tmp-menu-button">Wishlist</button>
                         <button className="tmp-menu-button">Stats</button>
-                        <button className="tmp-menu-button">Search...</button>
+                        <button className="tmp-menu-button">Research...</button>
                     </div>
-                    <div className="tmp-cards-holder">
-                        <input type="text" placeholder="Search"/>
-                        <CardsListView />
+                    <div className="mtg-list-container">
+                        <AllCardsView />
+                    </div>
+                    <div className="mtg-info-container">
+                        aaa
+                    </div>
+                    <div className="mtg-info-container">
+                        bbb
                     </div>
                 </div>
             </div>

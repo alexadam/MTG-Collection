@@ -5,6 +5,7 @@ import './search-cards.scss'
 import {cardData} from '../../resources/mtg-cards.js'
 import MTGManaIcons from './mana-icons'
 import CardView from '../cards/card-view'
+import CardsListView from '../cards/cards-list'
 
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux';
@@ -138,9 +139,10 @@ class SearchCards extends React.Component {
         if (this.state.searchResult) {
             let keyIndex = 0
             for (let card of this.state.searchResult) {
-                cardsFound.push(
-                    <CardView key={keyIndex++} card={card} onCardSelected={this.onCardSelected} selectedCard={this.state.selectedCard}/>
-                )
+                // cardsFound.push(
+                //     <CardView key={keyIndex++} card={card} onCardSelected={this.onCardSelected} selectedCard={this.state.selectedCard} compactView={true}/>
+                // )
+                cardsFound.push(card)
             }
         }
 
@@ -148,7 +150,7 @@ class SearchCards extends React.Component {
             <div className="mtg-search-card-container">
                 <SearchFilter onSearchInput={this.onSearchInput}/>
                 <div className="mtg-search-card-results">
-                    {cardsFound}
+                    <CardsListView allCards={cardsFound} onCardSelected={this.onCardSelected} compactView={true} />
                 </div>
                 <div className="mtg-search-card-menu">
                     <span>Add to:</span>

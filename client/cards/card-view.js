@@ -1,5 +1,6 @@
 import React from 'react'
 import MTGManaIcons from '../misc-components/mana-icons'
+import './card-view.scss'
 
 
 class CardRulesText extends React.Component {
@@ -41,13 +42,26 @@ export default class CardView extends React.Component {
             return null
         }
 
+        if (this.props.compactView) {
+            return (
+                <div className={"mtg-card " + bgClass} onClick={this.cardSelected}>
+                    <div className="mtg-card-header mtg-card-row">
+                        <div className="mtg-card-name">
+                            {this.props.card.name}
+                        </div>
+                    </div>
+                </div>
+            )
+        }
+
         let amISelected = false
         if (this.props.selectedCard && this.props.selectedCard.name === this.props.card.name) {
             amISelected = true
         }
+
         let bgClass = ''
         if (amISelected) {
-            bgClass = 'selected-card'
+            bgClass = 'mtg-selected-card'
         }
 
         let cardPower = null
@@ -62,7 +76,7 @@ export default class CardView extends React.Component {
         }
 
         return (
-            <div className={"mtg-card mtg-focus-card-view " + bgClass} onClick={this.cardSelected}>
+            <div className={"mtg-card " + bgClass} onClick={this.cardSelected}>
                 <div className="mtg-card-header mtg-card-row">
                     <div className="mtg-card-name">
                         {this.props.card.name}

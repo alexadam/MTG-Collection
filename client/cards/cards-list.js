@@ -3,20 +3,34 @@ import React from 'react'
 // import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux';
 import CardView from './card-view'
-
+import './cards-list.scss'
 
 // import {add, remove} from '../actions/actions.js'
 
+export default class CardsListView extends React.Component {
 
+    state = {
+        selectedCard: null
+    }
 
-class CardsListView extends React.Component {
+    onCardSelected = (selectedCard) => {
+        this.setState({
+            selectedCard: selectedCard
+        }, () => {
+            this.props.onCardSelected(selectedCard)
+        })
+    }
 
     render = () => {
-
         let allCardsComponents = []
         let index = 0
+
         for (let card of this.props.allCards) {
-            allCardsComponents.push(<CardView card={card.type} key={index++}/>)
+            allCardsComponents.push(<CardView onCardSelected={this.onCardSelected}
+                                                card={card}
+                                                selectedCard={this.state.selectedCard}
+                                                compactView={this.props.compactView}
+                                                key={index++}/>)
         }
 
         return (
@@ -29,12 +43,12 @@ class CardsListView extends React.Component {
 
 
 
-const mapStateToProps = (state) => ({ allCards: state.allCards })
-
-// const mapDispatchToProps = (dispatch) => ({
-//     add: bindActionCreators(add, dispatch),
-//     remove: bindActionCreators(remove, dispatch)
-// })
-
-// export default connect(mapStateToProps, mapDispatchToProps)(Edit);
-export default connect(mapStateToProps)(CardsListView);
+// const mapStateToProps = (state) => ({ allCards: state.allCards })
+//
+// // const mapDispatchToProps = (dispatch) => ({
+// //     add: bindActionCreators(add, dispatch),
+// //     remove: bindActionCreators(remove, dispatch)
+// // })
+//
+// // export default connect(mapStateToProps, mapDispatchToProps)(Edit);
+// export default connect(mapStateToProps)(CardsListView);

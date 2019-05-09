@@ -8,21 +8,12 @@ html, body {
     width: 100%; height: 100%; padding: 0; margin: 0; box-sizing: border-box;
 }
 
-.mtg-search-popup-container {
-    width: 100%; height: 80%; max-height: 80%;
+* {
+    box-sizing: border-box;
 }
 
-@font-face {
-    font-family: "magic1";
-    src:url("/assets/Magic.ttf")  format('truetype');
-}
-@font-face {
-    font-family: "magic2";
-    src:url("/assets/planewalker/Planewalker.otf");
-}
-@font-face {
-    font-family: "magic3";
-    src:url("/assets/magicthegathering/mafic.ttf")  format('truetype');
+.mtg-search-popup-container {
+    width: 100%; height: 80%; max-height: 80%;
 }
 
 .main-container {
@@ -32,10 +23,10 @@ html, body {
 }
 
 .title {
-    width: 100%;
+    width: 100%; height: 40px;
     text-align: center;
-    font-size: 50px;
-    font-family: "magic3";
+    font-size: 20px;
+    font-family: "serif";
 }
 
 .tmp-container {
@@ -54,43 +45,43 @@ html, body {
     width: 100px; max-width: 100px;
     height: 100%;
     display: flex; flex-flow: column;
+    // background: #4ca2cd;  /* fallback for old browsers */
+    border-right: solid 1px gray;
+    // background-color: rgb(74, 145, 227);
+    // background-color: rgb(40, 208, 192);
+    // background-color: rgb(217, 53, 70);
+    // background-color: rgb(164, 0, 8);
+    // background-color: rgb(242, 145, 126);
+    // background-color: rgb(250, 171, 47);
+    // background-color: rgb(196, 11, 42);
 }
 .tmp-menu-button {
-
+    padding: 10px 0;
+    border: none;
+    background-color: rgba(0, 0, 0, 0);
+    cursor: pointer;
+    // color: white;
+}
+.tmp-menu-button:hover {
+    font-weight: bold;
+    // background-color:  whitesmoke;
+    // color: black;
+    // border-right: solid 3px white;
+    border-right: solid 3px black;
 }
 
-.tmp-cards-holder {
-    width: 300px; max-width: 300px;
+.mtg-list-container {
+    width: 400px; max-width: 400px;
     height: 100%;
-    display: flex; flex-flow: column;
-    padding: 10px;
+    display: flex; flex-direction: column;
+    height: calc(100vh - 39px);
+    border-right: solid 1px gray;
 }
-
-.tmp-card-info-container {
-    width: 100%; height: 100%;
-}
-
-
-.card {
-    width: 100%; height: auto; min-height: 100px;
-    // width: 300px; height: 400px;
-    // width: 300px; height: 100px;
-    padding: 10px;
-    border-radius: 5px;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    margin-top: 20px;
-
-
-    // // position: absolute;
-    //   // width: 100%;
-    //   // height: 100%;
-      transform-style: preserve-3d;
-      // z-index:1;
-      border-radius: 10px;
-      background: -webkit-linear-gradient(315deg, rgba(245, 245, 255, 0.1) 0%, rgba(255, 255, 255, 0) 60%);
-      background: linear-gradient(135deg, rgba(255,255, 255, 0.1) 0%, rgba(255, 255, 255, 0) 60%);
-    //   z-index: -1;
-}
-.card:hover {
-    box-shadow: 0 8px 18px rgba(0, 0, 0, 0.10), 0 8px 8px rgba(0, 0, 0, 0.18);
+.mtg-info-container {
+    width: 50%;
+    height: 100%;
+    display: flex; flex-direction: column;
+    // height: calc(100vh - 39px);
+    border-right: solid 1px gray;
+    // background-color: rgb(226, 228, 199);
 }
