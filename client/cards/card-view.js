@@ -42,18 +42,6 @@ export default class CardView extends React.Component {
             return null
         }
 
-        if (this.props.compactView) {
-            return (
-                <div className={"mtg-card " + bgClass} onClick={this.cardSelected}>
-                    <div className="mtg-card-header mtg-card-row">
-                        <div className="mtg-card-name">
-                            {this.props.card.name}
-                        </div>
-                    </div>
-                </div>
-            )
-        }
-
         let amISelected = false
         if (this.props.selectedCard && this.props.selectedCard.name === this.props.card.name) {
             amISelected = true
@@ -62,6 +50,16 @@ export default class CardView extends React.Component {
         let bgClass = ''
         if (amISelected) {
             bgClass = 'mtg-selected-card'
+        }
+
+        if (this.props.compactView) {
+            return (
+                <div className={"mtg-card mtg-card-compact " + bgClass} onClick={this.cardSelected}>
+                    <div className="mtg-card-name">
+                        {this.props.card.name}
+                    </div>
+                </div>
+            )
         }
 
         let cardPower = null

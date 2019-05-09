@@ -15,7 +15,15 @@ class AllCardsView extends React.Component {
 
     state = {
         selectedCard: null,
-        isSearchVisible: false
+        isSearchVisible: false,
+        filterText: ''
+    }
+
+    onFilter = (e) => {
+        let newValue = e.target.value
+        this.setState({
+            filterText: newValue
+        })
     }
 
     toggleSearch = () => {
@@ -36,17 +44,28 @@ class AllCardsView extends React.Component {
         let cards = []
         let index = 0
 
+        let filterRegex = null
+        if (this.state.filterText.length > 0) {
+            filterRegex = new RegExp('.*' + this.state.filterText + '.*', 'i')
+        }
+
         for (let card of this.props.allCards) {
-            cards.push(card.type)
+            if (filterRegex ) {
+                if (filterRegex.test(card.type.name)) {
+                    cards.push(card.type)
+                }
+            } else {
+                cards.push(card.type)
+            }
         }
 
         return (
             <div className="mtg-all-cards-view">
                 <div className="mtg-acv-header">
-                    <input className="mtg-acv-filter" type="text" placeholder="Filter by Card's Name"/>
+                    <input className="mtg-acv-filter" type="text" placeholder="Filter by Card's Name" value={this.state.filterText} onChange={this.onFilter}/>
                 </div>
                 <div className="mtg-acv-cards">
-                    <CardsListView allCards={cards} compactView={true} onCardSelected={this.onCardSelected} />
+                    <CardsListView allCards={cards} compactView={true} onCardSelected={this.onCardSelected} selectedCard={this.state.selectedCard}/>
                 </div>
                 <div className="mtg-acv-footer">
                     <button className="mtg-acv-add-card" onClick={this.toggleSearch}>Add Card...</button>

@@ -110,9 +110,6 @@ const App = (props) => (
                     <div className="mtg-info-container">
                         aaa
                     </div>
-                    <div className="mtg-info-container">
-                        bbb
-                    </div>
                 </div>
             </div>
         </div>
