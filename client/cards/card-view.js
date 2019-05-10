@@ -42,8 +42,19 @@ export default class CardView extends React.Component {
             return null
         }
 
+        let cardData = this.props.card
+        if (this.props.card.mtgData) {
+            cardData = this.props.card.mtgData
+        }
+
         let amISelected = false
-        if (this.props.selectedCard && this.props.selectedCard.name === this.props.card.name) {
+        if (this.props.selectedCard &&
+                (
+                    (this.props.selectedCard.mtgData && this.props.selectedCard.mtgData.name === cardData.name)
+                ||
+                    (this.props.selectedCard.name === cardData.name)
+                )
+            ) {
             amISelected = true
         }
 
@@ -56,18 +67,18 @@ export default class CardView extends React.Component {
             return (
                 <div className={"mtg-card mtg-card-compact " + bgClass} onClick={this.cardSelected}>
                     <div className="mtg-card-name">
-                        {this.props.card.name}
+                        {cardData.name}
                     </div>
                 </div>
             )
         }
 
         let cardPower = null
-        if (this.props.card.power || this.props.card.toughness) {
+        if (cardData.power || cardData.toughness) {
             cardPower = (
                 <div className="mtg-card-power mtg-card-row">
                     <div className="mtg-card-power-display">
-                        <MTGManaIcons inlineText={this.props.card.power} /> / <MTGManaIcons inlineText={this.props.card.toughness} />
+                        <MTGManaIcons inlineText={cardData.power} /> / <MTGManaIcons inlineText={cardData.toughness} />
                     </div>
                 </div>
             )
@@ -77,18 +88,18 @@ export default class CardView extends React.Component {
             <div className={"mtg-card " + bgClass} onClick={this.cardSelected}>
                 <div className="mtg-card-header mtg-card-row">
                     <div className="mtg-card-name">
-                        {this.props.card.name}
+                        {cardData.name}
                     </div>
                     <div className="mtg-card-mana">
-                        <MTGManaIcons manaString={this.props.card.manaCost} width="15" />
+                        <MTGManaIcons manaString={cardData.manaCost} width="15" />
                     </div>
                 </div>
 
                 <div className="mtg-card-type mtg-card-row">
-                    {this.props.card.type}
+                    {cardData.type}
                 </div>
                 <div className="mtg-card-rules mtg-card-row">
-                    <CardRulesText rulesText={this.props.card.text} />
+                    <CardRulesText rulesText={cardData.text} />
                 </div>
                 {cardPower}
 

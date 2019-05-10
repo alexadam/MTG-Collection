@@ -1,5 +1,19 @@
 
 
+
+.mtg-cards-view-container{
+    width: 100%; height: 100%;
+    display: flex; flex-flow: row;
+}
+
+.mtg-list-container {
+    width: 400px; max-width: 400px;
+    height: 100%;
+    display: flex; flex-direction: column;
+    height: calc(100vh - 39px);
+    border-right: solid 1px gray;
+}
+
 .mtg-all-cards-view {
     width: 100%; height: 100%;
     display: flex; flex-flow: column;
@@ -69,4 +83,24 @@
     outline: 0;
     border: 0;
     cursor: pointer;
+}
+
+
+
+
+
+
+
+////
+
+
+
+.mtg-info-container {
+    width: 100%;
+    height: 100%;
+    display: flex; flex-direction: column;
+    // height: calc(100vh - 39px);
+    border-right: solid 1px gray;
+    // background-color: rgb(226, 228, 199);
+    padding: 5px;
 }

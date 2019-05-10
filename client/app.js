@@ -88,8 +88,6 @@ const store = createStore(MainReducer);
 */
 
 
-import CardsListView from './cards/cards-list'
-
 const App = (props) => (
 
     <Provider store={store}>
@@ -104,11 +102,8 @@ const App = (props) => (
                         <button className="tmp-menu-button">Stats</button>
                         <button className="tmp-menu-button">Research...</button>
                     </div>
-                    <div className="mtg-list-container">
+                    <div className="mtg-container">
                         <AllCardsView />
-                    </div>
-                    <div className="mtg-info-container">
-                        aaa
                     </div>
                 </div>
             </div>

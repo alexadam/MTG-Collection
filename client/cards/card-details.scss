@@ -1,0 +1,47 @@
+
+.mtg-card-details {
+    width: 100%; height: 100%;
+    display: flex; flex-direction: column;
+}
+
+.mtg-card-details-section {
+    width: 100%;
+    width: 50%;
+    margin-bottom: 15px;
+    // height: 100%;
+    display: flex; flex-direction: column;
+}
+
+.mtg-card-details-section-title {
+    width: 100%;
+    display: flex; flex-direction: row;
+    font-size: 15px;
+    padding: 5px;
+    border-bottom: solid 1px gray;
+}
+
+.mtg-card-details-section-container {
+    width: 100%;
+    display: flex; flex-direction: column;
+    padding: 5px;
+}
+
+
+
+.mtg-card-details-info-container {
+    width: 100%;
+    display: flex; flex-direction: column;
+    padding: 5px;
+}
+
+.mtg-card-details-info-label {
+    width: 100%;
+    font-weight: bold;
+    font-size: 12px;
+}
+
+.mtg-card-details-info-object {
+    width: 100%;
+    font-size: 12px;
+    margin-left: 15px;
+}
