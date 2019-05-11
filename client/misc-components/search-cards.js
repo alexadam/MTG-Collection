@@ -3,7 +3,6 @@ import Fuse from 'fuse.js'
 import Modal from 'react-responsive-modal';
 import './search-cards.scss'
 import {cardData} from '../../resources/mtg-cards.js'
-import MTGManaIcons from './mana-icons'
 import CardView from '../cards/card-view'
 import CardsListView from '../cards/cards-list'
 

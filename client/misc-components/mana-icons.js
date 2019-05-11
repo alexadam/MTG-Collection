@@ -1,6 +1,7 @@
 
 
 import React from 'react'
+import * as Utils from './utils'
 import './mana-icons.scss'
 
 export default class MTGManaIcons extends React.Component {
@@ -66,7 +67,8 @@ export default class MTGManaIcons extends React.Component {
         }
 
         return (
-            <svg xmlns="http://www.w3.org/2000/svg" className={className} viewBox="0 0 600 600"><circle cx="300" cy="300" r="300" fill={bgColor}/>
+            <svg xmlns="http://www.w3.org/2000/svg" className={className} viewBox="0 0 600 600" key={Utils.generateRandomKey()}>
+                <circle cx="300" cy="300" r="300" fill={bgColor}/>
                 {symbolSVG}
             </svg>
         )
@@ -82,7 +84,7 @@ export default class MTGManaIcons extends React.Component {
         }
 
         return (
-            <svg xmlns="http://www.w3.org/2000/svg" className={className} viewBox="0 0 600 600">
+            <svg xmlns="http://www.w3.org/2000/svg" className={className} viewBox="0 0 600 600" key={Utils.generateRandomKey()}>
                 {leftMana}
                 {rightMana}
             </svg>
@@ -179,7 +181,7 @@ export default class MTGManaIcons extends React.Component {
             if (mana.indexOf('/') > 0) {
                 manaArray = mana.split('/')
             }
-            
+
             let tmpIcon = null
             if (manaArray.length > 1) {
                 tmpIcon = this.createHalfMana(manaArray[0], manaArray[1])
@@ -210,7 +212,7 @@ export default class MTGManaIcons extends React.Component {
 
             let stringPart = targetText.substring(lastIndex, manaRegexp.lastIndex - match[0].length)
             lastIndex = manaRegexp.lastIndex // + match[0].length
-            parts.push(<span>{stringPart}</span>)
+            parts.push(<span key={Utils.generateRandomKey()}>{stringPart}</span>)
 
             let manaArray = []
             if (mana.indexOf('/') > 0) {
