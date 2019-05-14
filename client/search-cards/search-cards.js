@@ -128,6 +128,8 @@ class SearchCards extends React.Component {
     onNewFilterType = (newFilter) => {
         this.setState({
             filterBy: newFilter
+        }, () => {
+            this.search()
         })
     }
 
@@ -203,7 +205,7 @@ class SearchCards extends React.Component {
             <div className="mtg-search-card-container">
                 <SearchFilter onSearchInput={this.onSearchInput} onNewFilterType={this.onNewFilterType}/>
                 <div className="mtg-search-card-results">
-                    <CardsListView allCards={cardsFound} onCardSelected={this.onCardSelected} compactView={true} />
+                    <CardsListView allCards={cardsFound} onCardSelected={this.onCardSelected} compactView={true} displayExpand={true} />
                 </div>
                 <div className="mtg-search-card-menu">
                     <span>Add to:</span>

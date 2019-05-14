@@ -3,7 +3,7 @@
 
 
 .mtg-selected-card {
-    background-color: rgba(0, 0, 255, 0.3) !important; 
+    background-color: rgba(0, 0, 255, 0.3) !important;
 }
 
 .mtg-focus-card-view:hover {
@@ -65,6 +65,42 @@
     border-bottom: solid 1px lightgrey;
 }
 
+.mtg-card-compact-header {
+    width: 100%;
+    display: flex; flex-direction: row;
+}
+
+.mtg-card-expand-button {
+    height: 30px; width: 30px;
+    margin-top: -10px;
+    text-align: center;
+    padding: 3px;
+    background-color: rgba(0,0,0,0);
+    outline: 0;
+    border: 0;
+    cursor: pointer;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.mtg-card-compact-details {
+    width: 100%;
+    display: flex; flex-direction: column;
+    padding: 5px;
+}
+
+.mtg-card-compact-details-label {
+    width: 100%;
+    display: flex; flex-direction: column;
+    padding: 5px;
+}
+
+.mtg-card-compact-details-value {
+    width: 100%;
+    display: flex; flex-direction: column;
+    padding: 5px;
+}
+
 .mtg-card-row {
     padding: 5px 10px;
     margin-bottom: 10px;
@@ -79,6 +115,7 @@
 }
 
 .mtg-card-name {
+    width: 100%;
     font-size: 15px;
     font-weight: bold;
 }

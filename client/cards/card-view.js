@@ -1,5 +1,7 @@
 import React from 'react'
 import MTGManaIcons from '../misc-components/mana-icons'
+import {CardInfoMana, CardInfoText, CardInfoTextMana} from './card-view-utils'
+
 import './card-view.scss'
 
 
@@ -35,6 +37,14 @@ export default class CardView extends React.Component {
         this.props.onCardSelected(this.props.card)
     }
 
+    state = {
+        isExpanded: false
+    }
+
+    toggleCardInfoExpand = () => {
+        this.setState({isExpanded: !this.state.isExpanded})
+    }
+
 
     render = () => {
 
@@ -64,11 +74,35 @@ export default class CardView extends React.Component {
         }
 
         if (this.props.compactView) {
+            let expandComponent = null
+            let cardDetails = null
+
+            if (this.props.displayExpand) {
+                let textContent = '+'
+                if (this.state.isExpanded) {
+                    textContent = '-'
+
+                    cardDetails = (
+                        <div className="mtg-card-compact-details">
+                            <CardInfoMana label="Mana Cost" content={cardData.manaCost} />
+                            <CardInfoText label="Type" content={cardData.type} />
+                            <CardInfoTextMana label="Text" content={cardData.text} />
+                            <CardInfoText label="Power / Toughness" content={cardData.power + ' / ' + cardData.toughness} />
+                        </div>
+                    )
+                }
+                expandComponent = <button className="mtg-card-expand-button" onClick={this.toggleCardInfoExpand}>{textContent}</button>
+            }
+
             return (
-                <div className={"mtg-card mtg-card-compact " + bgClass} onClick={this.cardSelected}>
-                    <div className="mtg-card-name">
-                        {cardData.name}
+                <div className={"mtg-card mtg-card-compact " + bgClass} >
+                    <div className="mtg-card-compact-header">
+                        <div className="mtg-card-name" onClick={this.cardSelected}>
+                            {cardData.name}
+                        </div>
+                        {expandComponent}
                     </div>
+                    {cardDetails}
                 </div>
             )
         }

@@ -30,6 +30,7 @@ export default class CardsListView extends React.Component {
                                                 card={card}
                                                 selectedCard={this.state.selectedCard}
                                                 compactView={this.props.compactView}
+                                                displayExpand={this.props.displayExpand}
                                                 key={index++}/>)
         }
 
