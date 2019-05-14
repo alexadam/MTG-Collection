@@ -8,7 +8,7 @@ import CardDetails from '../cards/card-details'
 import './all-cards-view.scss'
 
 import Modal from 'react-responsive-modal';
-import SearchCards from '../misc-components/search-cards'
+import SearchCards from '../search-cards/search-cards'
 
 // import {add, remove} from '../actions/actions.js'
 
@@ -49,7 +49,7 @@ class AllCardsView extends React.Component {
             filterRegex = new RegExp('.*' + this.state.filterText + '.*', 'i')
         }
 
-        for (let card of this.props.allCards) {
+        for (let card of this.props.myCards) {
             if (filterRegex ) {
                 if (filterRegex.test(card.type.name)) {
                     cards.push(card)
@@ -90,7 +90,7 @@ class AllCardsView extends React.Component {
 
 
 
-const mapStateToProps = (state) => ({ allCards: state.allCards })
+const mapStateToProps = (state) => ({ myCards: state.myCards })
 
 // const mapDispatchToProps = (dispatch) => ({
 //     add: bindActionCreators(add, dispatch),

@@ -9,7 +9,7 @@ import './style.scss';
 
 
 import Modal from 'react-responsive-modal';
-import SearchCards from './misc-components/search-cards'
+import SearchCards from './search-cards/search-cards'
 import AllCardsView from './all-cards/all-cards-view'
 
 import MainReducer from './reducer.js';

@@ -8,15 +8,56 @@
     width: 100%;
     display: flex; flex-flow: column;
 }
-.mtg-search-card-input {
+
+
+
+
+
+//////
+
+.mtg-filter-group {
     width: 100%;
-    display: flex; flex-flow: row;
+    display: flex; flex-direction: column;
 }
+
+.mtg-search-filter-input {
+    width: 100%;
+    // display: flex; flex-flow: row;
+}
+
+.mtg-filter-string {
+    width: 100%;
+    font-size: 12px;
+    padding: 5px;
+}
+
+.mtg-filter-menu {
+    width: 100%;
+    display: flex; flex-direction: row;
+    padding: 5px;
+    height: 20px;
+    line-height: 20px; vertical-align: middle;
+}
+
+.mtg-search-filter-row {
+    width: 100%;
+    display: flex; flex-direction: row;
+}
+
 .mtg-search-card-options {
     width: 100%;
     display: flex; flex-flow: column;
     z-index: 99;
     background-color: white;
+}
+
+.mtg-filter-label {
+    font-size: 12px;
+    padding-right: 5px;
+}
+
+.mtg-filter-options {
+    font-size: 12px;
 }
 
 .mtg-search-card-results {

@@ -2,7 +2,6 @@ import React from 'react'
 import Fuse from 'fuse.js'
 import Modal from 'react-responsive-modal';
 import './search-cards.scss'
-import {cardData} from '../../resources/mtg-cards.js'
 import CardView from '../cards/card-view'
 import CardsListView from '../cards/cards-list'
 
@@ -15,7 +14,8 @@ class SearchFilter extends React.Component {
 
     state = {
         isFilterOptionsVisible: false,
-        filterString: ''
+        filterString: '',
+        filterBy: 'mtg-card-name'
     }
 
     toggleFilterOptions = () => {
@@ -25,6 +25,15 @@ class SearchFilter extends React.Component {
     onFilterInput = (e) => {
         let newVal = e.target.value
         this.setState({filterString: newVal}, ()=>{this.props.onSearchInput(newVal)})
+    }
+
+    onNewFilterType = (e) => {
+        let newFilter = e.target.value
+        this.setState({
+            filterBy: newFilter
+        }, () => {
+            this.props.onNewFilterType(newFilter)
+        })
     }
 
     render = () => {
@@ -43,17 +52,43 @@ class SearchFilter extends React.Component {
 
         return (
             <div className="mtg-search-card-filter-container">
-                <div className="mtg-search-card-input">
-                    <div className="mtg-search-filter-row">
-                        <input type="text" value={this.state.filterString} onChange={this.onFilterInput}/>
-                        <button onClick={this.toggleFilterOptions}>options</button>
+                <div className="mtg-filter-group">
+                    <div className="mtg-filter-input">
+                        <input type="text" className="mtg-filter-string"
+                            value={this.state.filterString}
+                            onChange={this.onFilterInput}
+                            placeholder="Filter Cards"
+                            />
+                    </div>
+                    <div className="mtg-filter-menu">
+                        <span className="mtg-filter-label">Filter by:</span>
+                        <select className="mtg-filter-options" onChange={this.onNewFilterType} value={this.state.filterBy}>
+                            <option value="mtg-card-name">MTG - Card Name</option>
+                            <option value="mtg-card-type">MTG - Card Type</option>
+                            <option value="mtg-card-text">MTG - Card Text</option>
+                        </select>
                     </div>
                 </div>
+
                 {filterOptions}
             </div>
         )
     }
 }
+
+/*
+<div className="mtg-search-card-input">
+    <div className="mtg-search-filter-row">
+        <input type="text" className="mtg-search-filter-string"
+                        value={this.state.filterString}
+                        onChange={this.onFilterInput}
+                        placeholder="Filter Cards"
+                        />
+        <button onClick={this.toggleFilterOptions}>options</button>
+    </div>
+</div>
+
+*/
 
 class AddCardOptions extends React.Component {
 
@@ -74,7 +109,8 @@ class SearchCards extends React.Component {
         selectedCard: null,
         searchValue: '',
         searchResult: null,
-        isAddOptionsVisible: false
+        isAddOptionsVisible: false,
+        filterBy: 'mtg-card-name'
     }
 
     onSearchInput = (e) => {
@@ -89,9 +125,30 @@ class SearchCards extends React.Component {
         })
     }
 
+    onNewFilterType = (newFilter) => {
+        this.setState({
+            filterBy: newFilter
+        })
+    }
+
     search = () => {
 
-        var options = {
+        let filterConstants = {
+            'mtg-card-name': 'name',
+            'mtg-card-type': 'type',
+            'mtg-card-text': 'text',
+        }
+
+        let filterKeys = ['name']
+        if (this.state.filterBy === 'mtg-card-name') {
+            filterKeys = ['name']
+        } else if (this.state.filterBy === 'mtg-card-type') {
+            filterKeys = ['type']
+        } else if (this.state.filterBy === 'mtg-card-text') {
+            filterKeys = ['text']
+        }
+
+        let options = {
               shouldSort: true,
               threshold: 0.2,
               location: 0,
@@ -99,13 +156,10 @@ class SearchCards extends React.Component {
               maxPatternLength: 32,
               minMatchCharLength: 1,
               tokenize:true,
-              keys: [
-                "name",
-                // "text"
-              ]
+              keys: filterKeys
             };
 
-            let fuse = new Fuse(cardData, options); // "list" is the item array
+            let fuse = new Fuse(this.props.cardsDB, options); // "list" is the item array
             let result = fuse.search(this.state.searchValue);
 
             this.setState({
@@ -147,7 +201,7 @@ class SearchCards extends React.Component {
 
         return (
             <div className="mtg-search-card-container">
-                <SearchFilter onSearchInput={this.onSearchInput}/>
+                <SearchFilter onSearchInput={this.onSearchInput} onNewFilterType={this.onNewFilterType}/>
                 <div className="mtg-search-card-results">
                     <CardsListView allCards={cardsFound} onCardSelected={this.onCardSelected} compactView={true} />
                 </div>
@@ -172,7 +226,7 @@ class SearchCards extends React.Component {
 
 
 
-const mapStateToProps = (state) => ({ allCards: state.allCards })
+const mapStateToProps = (state) => ({ cardsDB: state.cardsDB })
 
 const mapDispatchToProps = (dispatch) => ({
     addCardToCollection: bindActionCreators(addCardToCollection, dispatch),

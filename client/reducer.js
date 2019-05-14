@@ -1,4 +1,5 @@
 import {actions} from './actions'
+import {cardData} from '../resources/mtg-cards.js'
 
 const defaultCardData = {
     id: 0,
@@ -32,7 +33,8 @@ const deckData = {
 }
 
 const defaultData = {
-    allCards: [
+    cardsDB: cardData,
+    myCards: [
 
     ],
     decks: [
@@ -46,11 +48,11 @@ const defaultData = {
 const MainReducer = (state = defaultData, action) => {
 
     if (action.type === actions.ADD_CARD_TO_COLLECTION) {
-        let tmpData = JSON.parse(JSON.stringify(state))
         let tmpCard = JSON.parse(JSON.stringify(defaultCardData))
         tmpCard.mtgData = action.cardData
-        tmpData.allCards.push(tmpCard)
-        return tmpData
+        let tmpAllCards = JSON.parse(JSON.stringify(state.myCards))
+        tmpAllCards.push(tmpCard)
+        return {...state, myCards: tmpAllCards}
     }
     if (action.type === actions.REMOVE_CARD_FROM_COLLECTION) {
 
